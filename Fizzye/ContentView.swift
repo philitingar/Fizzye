@@ -10,6 +10,9 @@ extension Color {
     static let pepperRed = Color(red: 137 / 255, green: 0 / 255, blue: 36 / 255)
 }
 struct ContentView: View {
+    @State private var selectedOption = 0 // To track selected option
+    @State private var inputText = ""
+    let options = ["Sugary", "Zero"]
     var body: some View {
         ZStack {
             Color.black
@@ -29,7 +32,25 @@ struct ContentView: View {
                     .padding(.horizontal, 15)
             }.padding()
             VStack {
-                TextField("Enter first 4 digits here, ex: A023", text: .constant(""))
+                HStack {
+                    ForEach(0..<options.count, id: \.self) { index in
+                        Button {
+                            selectedOption = index
+                        } label: {
+                            Text(self.options[index])
+                                .font(.system(size: 18, weight: .bold))
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(self.selectedOption == index ? Color.pepperRed : Color.gray).opacity(0.9)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                    }
+                }
+                .padding(.top, 20)
+                .padding(.horizontal, 15)
+                
+                TextField("Enter first 4 digits here, ex: A023", text: $inputText)
                     .padding()
                     .background(Color.gray)
                     .foregroundStyle(.white)
