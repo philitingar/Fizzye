@@ -60,7 +60,7 @@ struct ContentView: View {
                 .padding(.top, 20)
                 .padding(.horizontal, 15)
                 
-                TextField("Enter first 5 digits here, ex: A0236", text: $inputText)
+                TextField("Enter first 5 digits here, ex: L3328", text: $inputText)
                     .padding()
                     .background(Color.gray)
                     .foregroundStyle(.white)
@@ -93,33 +93,29 @@ struct ContentView: View {
     }
 
     func calculateExpirationDate(code: String) -> String {
-        guard code.count >= 4 else { return "Invalid code." }
+        guard code.count >= 5 else { return "Invalid code.Code must be 5 characters long." }
         
         let monthCode = String(code.prefix(1))
         let yearCode = String(code.dropFirst().prefix(1))
-        let dayOfYear = String(code.dropFirst(2).prefix(2))
+        let dayOfYearString = String(code.suffix(3))
         
         guard let month = monthMapping[monthCode] else { return "Invalid month code."}
-        let year = 2020 + (Int(yearCode) ?? 2000)
+        guard let yearValue = Int(yearCode), yearValue >= 0 else { return "Invalid year code." }
+        let year = 2020 + yearValue
         
+        guard let dayOfYear = Int(dayOfYearString), dayOfYear > 0, dayOfYear <= 366 else {
+            return "Invalid day of year."
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-       guard let startDate = Calendar.current.date(from: DateComponents(year:year, month: 1, day: 1)) else {
-            return "Invalid Year"
+        
+       guard let startDate = Calendar.current.date(from: DateComponents(year:year, month: 1, day: 1)),
+             let manufactureDate = Calendar.current.date(byAdding: .day, value: dayOfYear - 1, to: startDate) else {
+            return "Error calculating manufacture date."
         }
-       
-        guard let dayInt = Int(dayOfYear) else {
-            return "Invalid day of year"
-        }
-        guard let manufactureDate = Calendar.current.date(byAdding: .day, value: dayInt, to: startDate) else {
-            return "Error: Could not calculate manufacture date"
-        }
-            let shelfLife: Int
-            if selectedOption == 1 {
-                shelfLife = 3
-            } else {
-                shelfLife = 9
-            }
+    
+        let shelfLife = selectedOption == 1 ? 3 : 9
+        
         guard let expirationDate = Calendar.current.date(byAdding: .month, value: shelfLife, to: manufactureDate) else {
                 return "Error: Could not calculate expiration date"
             }
