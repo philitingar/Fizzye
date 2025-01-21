@@ -46,23 +46,31 @@ struct ContentView: View {
                                 .font(.system(size: 18, weight: .bold))
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(self.selectedOption == index ? Color.pepperRed : Color.gray).opacity(0.9)
+                                .background(self.selectedOption == index ? Color.pepperRed : Color.black).opacity(0.9)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.pepperRed, lineWidth: 2)
+                                )
+                            
                         }
                     }
                 }
                 .padding(.top, 20)
                 .padding(.horizontal, 15)
                 
-                TextField("Enter first 4 digits here, ex: A023", text: $inputText)
+                TextField("Enter first 5 digits here, ex: A0236", text: $inputText)
                     .padding()
                     .background(Color.gray)
                     .foregroundStyle(.white)
-                    .textCase(.uppercase)
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
                     .padding(.top, 20)
+                    .onChange(of: inputText) { oldvalue, newValue in
+                        let filtered = newValue.uppercased().filter { $0.isLetter || $0.isNumber }
+                        inputText = String(filtered.prefix(5))
+                    }
                 Button {
                     expirationDate = calculateExpirationDate(code: inputText)
                 }label: {
@@ -70,7 +78,7 @@ struct ContentView: View {
                         .font(.system(size: 18, weight: .bold))
                         .padding()
                         .foregroundColor(.white)
-                        .background(.gray)
+                        .background(.black)
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
