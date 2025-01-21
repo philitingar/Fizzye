@@ -10,13 +10,12 @@ extension Color {
     static let pepperRed = Color(red: 137 / 255, green: 0 / 255, blue: 36 / 255)
 }
 struct ContentView: View {
+    @StateObject private var vm = ContentViewModel()
     @State private var selectedOption = 0 // To track selected option
     @State private var inputText = ""
     @State private var expirationDate = ""
-    let monthMapping: [String: Int] = [
-        "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6,
-        "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12
-    ]
+    @State private var isSheetPresented = false
+    @State private var showAlert = false
     let options = ["Sugary", "Zero"]
     var body: some View {
         ZStack {
@@ -72,8 +71,16 @@ struct ContentView: View {
                         inputText = String(filtered.prefix(5))
                     }
                 Button {
-                    expirationDate = calculateExpirationDate(code: inputText)
-                }label: {
+                    let monthCode = String(inputText.prefix(1))
+                    let dayOfTheYearString = String(inputText.suffix(3))
+                    if vm.isvalidMonthAndDay(code: monthCode, dayOfYearString: dayOfTheYearString) {
+                        expirationDate = vm.calculateExpirationDate(code: inputText, selectedOption: selectedOption)
+                        isSheetPresented = true
+                    } else {
+                        showAlert = true
+                    }
+                    inputText = ""
+                } label: {
                     Text("Calculate Expiration")
                         .font(.system(size: 18, weight: .bold))
                         .padding()
@@ -88,42 +95,20 @@ struct ContentView: View {
                 }
                 Spacer()
             }
+            .sheet(isPresented: $isSheetPresented) {
+                BottomSheetView(expirationDate: expirationDate)
+                    .presentationDetents([.height(450)])
+                    .presentationDragIndicator(.visible)
+                    .presentationBackground(Color.pepperRed)
+                    .cornerRadius(80)
+            
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Incorrect format."), message: Text("Make sure you put in the correct format"), dismissButton: .default(Text("OK"))
+                      )
+            }
         }
          
-    }
-
-    func calculateExpirationDate(code: String) -> String {
-        guard code.count >= 5 else { return "Invalid code.Code must be 5 characters long." }
-        
-        let monthCode = String(code.prefix(1))
-        let yearCode = String(code.dropFirst().prefix(1))
-        let dayOfYearString = String(code.suffix(3))
-        
-        guard let month = monthMapping[monthCode] else { return "Invalid month code."}
-        guard let yearValue = Int(yearCode), yearValue >= 0 else { return "Invalid year code." }
-        let year = 2020 + yearValue
-        
-        guard let dayOfYear = Int(dayOfYearString), dayOfYear > 0, dayOfYear <= 366 else {
-            return "Invalid day of year."
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-       guard let startDate = Calendar.current.date(from: DateComponents(year:year, month: 1, day: 1)),
-             let manufactureDate = Calendar.current.date(byAdding: .day, value: dayOfYear - 1, to: startDate) else {
-            return "Error calculating manufacture date."
-        }
-    
-        let shelfLife = selectedOption == 1 ? 3 : 9
-        
-        guard let expirationDate = Calendar.current.date(byAdding: .month, value: shelfLife, to: manufactureDate) else {
-                return "Error: Could not calculate expiration date"
-            }
-        print(" Expiration \(expirationDate)")
-        print(" ----")
-        print("Manufacure date \(manufactureDate)")
-        return dateFormatter.string(from: expirationDate)
-   
     }
 }
 
