@@ -37,7 +37,15 @@ class ContentViewModel: ObservableObject {
             return "Error calculating manufacture date."
         }
         
-        let shelfLife = selectedOption == 1 ? 3 : 9
+        //let shelfLife = selectedOption == 1 ? 3 : 9
+        let shelfLife: Int
+        if selectedOption == 1 {
+            shelfLife = 4
+        } else if selectedOption == 2 {
+            shelfLife = 9
+        } else {
+            shelfLife = 3
+        }
         
         guard let expirationDate = Calendar.current.date(byAdding: .month, value: shelfLife, to: manufactureDate) else {
             return "Error: Could not calculate expiration date."

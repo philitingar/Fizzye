@@ -18,7 +18,7 @@ struct ContentView: View {
     @State private var showAlert = false
     @State private var alertMessage: String = ""
     @State private var errorMessage: String?
-    let options = ["Sugary", "Zero"]
+    let options = ["Sugary", "Zero", "Diet"]
     private let validationRule = IncrementalValidationRule()
     
     var body: some View {
@@ -40,6 +40,11 @@ struct ContentView: View {
                     .padding(.horizontal, 15)
             }.padding()
             VStack {
+                Text("Select the type of DrPepper:")
+                    .font(.system(size: 19, weight: .bold))
+                    .foregroundColor(.pepperRed)
+                    .padding(.bottom, -5)
+                    .padding(.top, 10)
                 HStack {
                     ForEach(0..<options.count, id: \.self) { index in
                         Button {
@@ -56,6 +61,8 @@ struct ContentView: View {
                                             self.selectedOption == index ? Color.pepperRed : Color.gray.opacity(0.2)
                                         } else if index == 1 {
                                             self.selectedOption == index ? Color.black : Color.gray.opacity(0.2)
+                                        } else if index == 2 {
+                                            self.selectedOption == index ? Color.gray : Color.gray.opacity(0.2)
                                         }
                                     }
                                 )
@@ -69,14 +76,13 @@ struct ContentView: View {
                                         }
                                     }
                                 )
-                            
                         }
                     }
                 }
                 .padding(.top, 20)
                 .padding(.horizontal, 15)
                 
-                TextField("Enter first 5 digits here, ex: A1234", text: $inputText)
+                TextField("Enter first 5 digits of code here, ex: A1234", text: $inputText)
                     .padding()
                     .background(Color.gray)
                     .foregroundStyle(.white)
@@ -105,18 +111,20 @@ struct ContentView: View {
                     if selectedOption == -1 {
                         showAlert = true
                         alertMessage = "Please select the type of drink before calculating."
+                        inputText = inputText
                     } else {
                         let monthCode = String(inputText.prefix(1))
                         let dayOfTheYearString = String(inputText.suffix(3))
                         if vm.isvalidMonthAndDay(code: monthCode, dayOfYearString: dayOfTheYearString) {
                             expirationDate = vm.calculateExpirationDate(code: inputText, selectedOption: selectedOption)
                             isSheetPresented = true
+                            inputText = ""
                         } else {
                             showAlert = true
-                            alertMessage = "The code you entered is incorrect. Make sure you put in the correct format."
+                            alertMessage = "The code you entered is incorrect. Make sure you put in the correct code."
+                            inputText = ""
                         }
                     }
-                    inputText = ""
                     selectedOption = -1
                 } label: {
                     Text(inputText.isEmpty || errorMessage != nil || inputText.count < 5 ? "Enter details" : "Calculate Expiration")
