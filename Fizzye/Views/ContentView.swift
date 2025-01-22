@@ -11,12 +11,16 @@ extension Color {
 }
 struct ContentView: View {
     @StateObject private var vm = ContentViewModel()
-    @State private var selectedOption = 0 // To track selected option
+    @State private var selectedOption = -1
     @State private var inputText = ""
     @State private var expirationDate = ""
     @State private var isSheetPresented = false
     @State private var showAlert = false
+    @State private var alertMessage: String = ""
+    @State private var errorMessage: String?
     let options = ["Sugary", "Zero"]
+    private let validationRule = IncrementalValidationRule()
+    
     var body: some View {
         ZStack {
             Color.black
@@ -45,12 +49,25 @@ struct ContentView: View {
                                 .font(.system(size: 18, weight: .bold))
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(self.selectedOption == index ? Color.pepperRed : Color.black).opacity(0.9)
+                            // .background(self.selectedOption == index ? Color.pepperRed : Color.black).opacity(0.9)
+                                .background(
+                                    Group {
+                                        if index == 0 {
+                                            self.selectedOption == index ? Color.pepperRed : Color.gray.opacity(0.2)
+                                        } else if index == 1 {
+                                            self.selectedOption == index ? Color.black : Color.gray.opacity(0.2)
+                                        }
+                                    }
+                                )
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                                 .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.pepperRed, lineWidth: 2)
+                                    Group {
+                                        if selectedOption == index {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color.pepperRed, lineWidth: 2)
+                                        }
+                                    }
                                 )
                             
                         }
@@ -59,7 +76,7 @@ struct ContentView: View {
                 .padding(.top, 20)
                 .padding(.horizontal, 15)
                 
-                TextField("Enter first 5 digits here, ex: L3328", text: $inputText)
+                TextField("Enter first 5 digits here, ex: A1234", text: $inputText)
                     .padding()
                     .background(Color.gray)
                     .foregroundStyle(.white)
@@ -67,21 +84,42 @@ struct ContentView: View {
                     .padding(.horizontal, 15)
                     .padding(.top, 20)
                     .onChange(of: inputText) { oldvalue, newValue in
-                        let filtered = newValue.uppercased().filter { $0.isLetter || $0.isNumber }
-                        inputText = String(filtered.prefix(5))
+                        let uppercasedValue = newValue.uppercased()
+                        let filteredValue = uppercasedValue.filter { $0.isLetter || $0.isNumber }
+                        inputText = String(filteredValue.prefix(5))
+                        
+                        if !inputText.isEmpty {
+                            errorMessage = validationRule.validate(filteredValue)
+                        } else {
+                            errorMessage = nil
+                        }
+                       
                     }
+                if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .font(.caption)
+                        .foregroundColor(.red)
+                        .padding(.horizontal, 15)
+                }
                 Button {
-                    let monthCode = String(inputText.prefix(1))
-                    let dayOfTheYearString = String(inputText.suffix(3))
-                    if vm.isvalidMonthAndDay(code: monthCode, dayOfYearString: dayOfTheYearString) {
-                        expirationDate = vm.calculateExpirationDate(code: inputText, selectedOption: selectedOption)
-                        isSheetPresented = true
-                    } else {
+                    if selectedOption == -1 {
                         showAlert = true
+                        alertMessage = "Please select the type of drink before calculating."
+                    } else {
+                        let monthCode = String(inputText.prefix(1))
+                        let dayOfTheYearString = String(inputText.suffix(3))
+                        if vm.isvalidMonthAndDay(code: monthCode, dayOfYearString: dayOfTheYearString) {
+                            expirationDate = vm.calculateExpirationDate(code: inputText, selectedOption: selectedOption)
+                            isSheetPresented = true
+                        } else {
+                            showAlert = true
+                            alertMessage = "The code you entered is incorrect. Make sure you put in the correct format."
+                        }
                     }
                     inputText = ""
+                    selectedOption = -1
                 } label: {
-                    Text("Calculate Expiration")
+                    Text(inputText.isEmpty || errorMessage != nil || inputText.count < 5 ? "Enter details" : "Calculate Expiration")
                         .font(.system(size: 18, weight: .bold))
                         .padding()
                         .foregroundColor(.white)
@@ -93,6 +131,7 @@ struct ContentView: View {
                         )
                         .padding(.top, 20)
                 }
+                .disabled(inputText.isEmpty || errorMessage != nil || inputText.count < 5)
                 Spacer()
             }
             .sheet(isPresented: $isSheetPresented) {
@@ -101,14 +140,12 @@ struct ContentView: View {
                     .presentationDragIndicator(.visible)
                     .presentationBackground(Color.pepperRed)
                     .cornerRadius(80)
-            
+                
             }
             .alert(isPresented: $showAlert) {
-                Alert(title: Text("Incorrect format."), message: Text("Make sure you put in the correct format"), dismissButton: .default(Text("OK"))
-                      )
+                Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
         }
-         
     }
 }
 
