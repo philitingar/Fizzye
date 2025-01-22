@@ -54,7 +54,6 @@ struct ContentView: View {
                                 .font(.system(size: 18, weight: .bold))
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                            // .background(self.selectedOption == index ? Color.pepperRed : Color.black).opacity(0.9)
                                 .background(
                                     Group {
                                         if index == 0 {
@@ -118,14 +117,11 @@ struct ContentView: View {
                         if vm.isvalidMonthAndDay(code: monthCode, dayOfYearString: dayOfTheYearString) {
                             expirationDate = vm.calculateExpirationDate(code: inputText, selectedOption: selectedOption)
                             isSheetPresented = true
-                            inputText = ""
                         } else {
                             showAlert = true
                             alertMessage = "The code you entered is incorrect. Make sure you put in the correct code."
-                            inputText = ""
                         }
                     }
-                    selectedOption = -1
                 } label: {
                     Text(inputText.isEmpty || errorMessage != nil || inputText.count < 5 ? "Enter details" : "Calculate Expiration")
                         .font(.system(size: 18, weight: .bold))
@@ -143,12 +139,17 @@ struct ContentView: View {
                 Spacer()
             }
             .sheet(isPresented: $isSheetPresented) {
-                BottomSheetView(expirationDate: expirationDate)
+                BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption)
                     .presentationDetents([.height(450)])
                     .presentationDragIndicator(.visible)
                     .presentationBackground(Color.pepperRed)
                     .cornerRadius(80)
-                
+            }
+            .onChange(of: isSheetPresented) { oldvalue, isPresented in
+                if !isPresented {
+                    inputText = ""
+                    selectedOption = -1
+                }
             }
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))

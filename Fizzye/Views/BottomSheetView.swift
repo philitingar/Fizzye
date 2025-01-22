@@ -8,13 +8,33 @@
 import SwiftUI
 
 struct BottomSheetView: View {
+    @StateObject private var vm = ContentViewModel()
     let expirationDate: String
+    let code: String
+    let selectedOption: Int
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Code: \(code)")
+                .padding()
+                .foregroundStyle(.white)
+            let expirationDetails = vm.getExpirationDetailsForDifferentContainers(code: code, selectedOption: selectedOption, expirationDate: expirationDate)
+            let manufactureDate = vm.calculateExpirationDate(code: code, selectedOption: selectedOption)
+            ForEach(expirationDetails.keys.sorted(), id: \.self) { key in
+                Text("\(key): \(expirationDetails[key]!)")
+                    .padding()
+                    .foregroundStyle(.white)
+            }
+            Text(vm.checkExpirationStatus(expirationDate: expirationDate))
+                .padding()
+                .foregroundStyle(.white)
+                
+            Spacer()
+        }
+        .padding()
     }
 }
 
 #Preview {
-    BottomSheetView(expirationDate: "2024-12-31")
+    BottomSheetView(expirationDate: "2024-12-31", code: "A5001", selectedOption: -1)
 }
