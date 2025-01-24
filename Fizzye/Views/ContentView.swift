@@ -25,20 +25,6 @@ struct ContentView: View {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
-            VStack(alignment: .center,  spacing: 1) {
-                Image("pepper")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 400, maxHeight: 400)
-                    .opacity(0.5)
-                Text("This app only works with DrPepper produced in the USA.")
-                    .font(.title3)
-                    .foregroundColor(.pepperRed)
-                    .bold()
-                    .multilineTextAlignment(.center)
-                    .opacity(0.7)
-                    .padding(.horizontal, 15)
-            }.padding()
             VStack {
                 Text("Select the type of DrPepper:")
                     .font(.system(size: 19, weight: .bold))
@@ -80,6 +66,12 @@ struct ContentView: View {
                 }
                 .padding(.top, 20)
                 .padding(.horizontal, 15)
+                .padding(.bottom, 5)
+                Text("This calculator only works with DrPepper produced in the USA.")
+                    .foregroundStyle(.gray)
+                    .font(.footnote)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
                 
                 TextField("Enter first 5 digits of code here, ex: A1234", text: $inputText)
                     .padding()
@@ -87,7 +79,7 @@ struct ContentView: View {
                     .foregroundStyle(.white)
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
-                    .padding(.top, 20)
+                    .padding(.top, 5)
                     .onChange(of: inputText) { oldvalue, newValue in
                         let uppercasedValue = newValue.uppercased()
                         let filteredValue = uppercasedValue.filter { $0.isLetter || $0.isNumber }
@@ -137,6 +129,8 @@ struct ContentView: View {
                 }
                 .disabled(inputText.isEmpty || errorMessage != nil || inputText.count < 5)
                 Spacer()
+                Text("hello")
+                    .foregroundStyle(.white)
             }
             .sheet(isPresented: $isSheetPresented) {
                 BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption)

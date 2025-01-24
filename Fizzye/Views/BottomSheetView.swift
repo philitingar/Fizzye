@@ -19,7 +19,6 @@ struct BottomSheetView: View {
                 .padding()
                 .foregroundStyle(.white)
             let expirationDetails = vm.getExpirationDetailsForDifferentContainers(code: code, selectedOption: selectedOption, expirationDate: expirationDate)
-            let manufactureDate = vm.calculateExpirationDate(code: code, selectedOption: selectedOption)
             ForEach(expirationDetails.keys.sorted(), id: \.self) { key in
                 Text("\(key): \(expirationDetails[key]!)")
                     .padding()
