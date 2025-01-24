@@ -6,11 +6,47 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		20BFA7BB2D43AFED00B5BA1C /* Testing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BFA7BA2D43AFED00B5BA1C /* Testing.framework */; platformFilter = ios; };
+		20BFA7BC2D43AFED00B5BA1C /* Testing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20BFA7BA2D43AFED00B5BA1C /* Testing.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		20BFA7AF2D43AF0600B5BA1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 263BBCB32D0742D600C0A8B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 263BBCBA2D0742D600C0A8B5;
+			remoteInfo = Fizzye;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		20BFA7BD2D43AFEE00B5BA1C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				20BFA7BC2D43AFED00B5BA1C /* Testing.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		20BFA7AB2D43AF0600B5BA1C /* FizzyeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FizzyeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		20BFA7BA2D43AFED00B5BA1C /* Testing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Testing.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/Testing.framework; sourceTree = DEVELOPER_DIR; };
 		263BBCBB2D0742D600C0A8B5 /* Fizzye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fizzye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		20BFA7AC2D43AF0600B5BA1C /* FizzyeTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FizzyeTests;
+			sourceTree = "<group>";
+		};
 		263BBCBD2D0742D600C0A8B5 /* Fizzye */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Fizzye;
@@ -19,6 +55,14 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		20BFA7A82D43AF0600B5BA1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20BFA7BB2D43AFED00B5BA1C /* Testing.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		263BBCB82D0742D600C0A8B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -29,10 +73,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20BFA7B92D43AFED00B5BA1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20BFA7BA2D43AFED00B5BA1C /* Testing.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		263BBCB22D0742D600C0A8B5 = {
 			isa = PBXGroup;
 			children = (
 				263BBCBD2D0742D600C0A8B5 /* Fizzye */,
+				20BFA7AC2D43AF0600B5BA1C /* FizzyeTests */,
+				20BFA7B92D43AFED00B5BA1C /* Frameworks */,
 				263BBCBC2D0742D600C0A8B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				263BBCBB2D0742D600C0A8B5 /* Fizzye.app */,
+				20BFA7AB2D43AF0600B5BA1C /* FizzyeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +103,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		20BFA7AA2D43AF0600B5BA1C /* FizzyeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20BFA7B32D43AF0600B5BA1C /* Build configuration list for PBXNativeTarget "FizzyeTests" */;
+			buildPhases = (
+				20BFA7A72D43AF0600B5BA1C /* Sources */,
+				20BFA7A82D43AF0600B5BA1C /* Frameworks */,
+				20BFA7A92D43AF0600B5BA1C /* Resources */,
+				20BFA7BD2D43AFEE00B5BA1C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20BFA7B02D43AF0600B5BA1C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				20BFA7AC2D43AF0600B5BA1C /* FizzyeTests */,
+			);
+			name = FizzyeTests;
+			packageProductDependencies = (
+			);
+			productName = FizzyeTests;
+			productReference = 20BFA7AB2D43AF0600B5BA1C /* FizzyeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		263BBCBA2D0742D600C0A8B5 /* Fizzye */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 263BBCC92D0742D800C0A8B5 /* Build configuration list for PBXNativeTarget "Fizzye" */;
@@ -77,9 +156,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					20BFA7AA2D43AF0600B5BA1C = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 263BBCBA2D0742D600C0A8B5;
+					};
 					263BBCBA2D0742D600C0A8B5 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -94,17 +177,27 @@
 			);
 			mainGroup = 263BBCB22D0742D600C0A8B5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 263BBCBC2D0742D600C0A8B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				263BBCBA2D0742D600C0A8B5 /* Fizzye */,
+				20BFA7AA2D43AF0600B5BA1C /* FizzyeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		20BFA7A92D43AF0600B5BA1C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		263BBCB92D0742D600C0A8B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +208,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		20BFA7A72D43AF0600B5BA1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		263BBCB72D0742D600C0A8B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +224,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		20BFA7B02D43AF0600B5BA1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 263BBCBA2D0742D600C0A8B5 /* Fizzye */;
+			targetProxy = 20BFA7AF2D43AF0600B5BA1C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		20BFA7B12D43AF0600B5BA1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V6R32R32N9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FizzyeTests.FizzyeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fizzye.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Fizzye";
+			};
+			name = Debug;
+		};
+		20BFA7B22D43AF0600B5BA1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V6R32R32N9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FizzyeTests.FizzyeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fizzye.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Fizzye";
+			};
+			name = Release;
+		};
 		263BBCC72D0742D800C0A8B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -305,6 +451,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		20BFA7B32D43AF0600B5BA1C /* Build configuration list for PBXNativeTarget "FizzyeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20BFA7B12D43AF0600B5BA1C /* Debug */,
+				20BFA7B22D43AF0600B5BA1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		263BBCB62D0742D600C0A8B5 /* Build configuration list for PBXProject "Fizzye" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

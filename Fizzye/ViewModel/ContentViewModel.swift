@@ -9,17 +9,21 @@ import Foundation
 import SwiftUI
 
 class ContentViewModel: ObservableObject {
-     let monthMapping: [String: Int] = [
+    let monthMapping: [String: Int] = [
         "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6,
         "G": 7, "H": 8, "J": 9, "K": 10, "L": 11, "M": 12
     ]
-    
+
     let suggary: Int = 0
     let zero: Int = 1
     let diet: Int = 2
     
+    enum ExpirationType {
+        case sugraryPet, sugaryGlass, diet, zero
+    }
+    
     func isvalidMonthAndDay(code: String, dayOfYearString: String) -> Bool {
-        guard code.count >= 1, dayOfYearString.count == 3 else {
+        guard code.count == 1, dayOfYearString.count == 3 else {
             return false
         }
         let monthCode = String(code.prefix(1))
@@ -33,7 +37,7 @@ class ContentViewModel: ObservableObject {
         guard let startDate = Calendar.current.date(from: DateComponents(year: year, month: 1, day: 1)) else {
             return false
         }
-        guard let calculatedDate = Calendar.current.date(byAdding: .day, value: dayOfYear, to: startDate) else {
+        guard let calculatedDate = Calendar.current.date(byAdding: .day, value: dayOfYear - 1, to: startDate) else {
             return false
         }
         let calculatedMonth = Calendar.current.component(.month, from: calculatedDate)
@@ -47,29 +51,27 @@ class ContentViewModel: ObservableObject {
         let manufactureDate = convertCodeToDate(code: code)
         
         //let shelfLife = selectedOption == 1 ? 3 : 9
-        let shelfLife: Int
+        var expirationType: ExpirationType
         switch selectedOption {
         case zero:
-            shelfLife = 4
+            expirationType = ExpirationType.zero
         case diet:
-            shelfLife = 3
+            expirationType = ExpirationType.diet
         case suggary:
-            shelfLife = 9
+            expirationType = ExpirationType.sugaryGlass
         default:
-            shelfLife = 9
+            expirationType = ExpirationType.sugaryGlass
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        guard let expirationDate = Calendar.current.date(byAdding: .month, value: shelfLife, to: manufactureDate) else {
+        guard let expirationDate = addExpirationToDate(date: manufactureDate, type: expirationType) else {
             return "Error: Could not calculate expiration date."
         }
-        print("this is the manufacturing date: \(manufactureDate)")
-        print ("-------")
-        print("this is the expiration date: \(expirationDate)")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         return dateFormatter.string(from: expirationDate)
     }
-
+    
     func checkExpirationStatus(expirationDate: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -88,13 +90,13 @@ class ContentViewModel: ObservableObject {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         let glassBottleExpiration = Calendar.current.date(byAdding: .month, value: 9, to: manufactureDate)
         let petBottleExpiration = Calendar.current.date(byAdding: .month, value: 4, to: manufactureDate)
         guard let glassBottleExpirationDate = glassBottleExpiration,
               let petBottleExpirationDate = petBottleExpiration else {
-               return ["Error" : "Error calculating expiration dates."]
-           }
+            return ["Error" : "Error calculating expiration dates."]
+        }
         
         let glassBottleString = dateFormatter.string(from: glassBottleExpirationDate)
         let petBottleString = dateFormatter.string(from: petBottleExpirationDate)
@@ -102,10 +104,10 @@ class ContentViewModel: ObservableObject {
         
         var expirationDetails = [String: String]()
         
-        if selectedOption == 0 { //sugar
+        if selectedOption == suggary { //sugar
             expirationDetails["Glass Bottle/Cans expire in"] = glassBottleString
             expirationDetails["PET Bottles expire in"] = petBottleString
-        } else if selectedOption == 1 { //zero
+        } else if selectedOption == zero { //zero
             expirationDetails["Any containers have expired in"] = forAllContainers
         } else { //diet
             expirationDetails["Any containers have expired in"] = forAllContainers
@@ -123,12 +125,30 @@ class ContentViewModel: ObservableObject {
         let year = Int(2020) + yearValue!
         
         let dayOfYear = Int(dayOfYearString)
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        let startDate = Calendar.current.date(from: DateComponents(year: year, month: 1, day: 1))
-        let manufactureDate = Calendar.current.date(byAdding: .day, value: dayOfYear!, to: startDate!)
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        let startDate = calendar.date(from: DateComponents(year: year, month: 1, day: 1))
+        let manufactureDate = calendar.date(byAdding: .day, value: (dayOfYear! - 1), to: startDate!)
         
         return manufactureDate!
-    }}
+    }
+    
+    func addExpirationToDate(date: Date, type: ExpirationType) -> Date? {
+        var shelfLife: Int
+        switch type {
+        case ExpirationType.sugraryPet, ExpirationType.zero:
+            shelfLife = 4
+        case ExpirationType.sugaryGlass:
+            shelfLife = 9
+        case ExpirationType.diet:
+            shelfLife = 3
+        }
+        
+        shelfLife = shelfLife - 1
+        
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        return calendar.date(byAdding: .month, value: shelfLife, to: date)
+    }
+}
