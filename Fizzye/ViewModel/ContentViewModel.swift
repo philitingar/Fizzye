@@ -115,7 +115,6 @@ class ContentViewModel: ObservableObject {
     
     // imeplements the logic to convert a manufactury code to a manufactury Date and is reused across the code.
     func convertCodeToDate(code: String) -> Date {
-        let monthCode = String(code.prefix(1))
         let yearCode = String(code.dropFirst().prefix(1))
         let dayOfYearString = String(code.suffix(3))
         
