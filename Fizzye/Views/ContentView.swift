@@ -20,31 +20,40 @@ struct ContentView: View {
     @State private var errorMessage: String?
     let options = ["Sugary", "Zero", "Diet"]
     private let validationRule = IncrementalValidationRule()
-    
+    let drPepperGroupItems = ["Dr Pepper", "Snapple", "RC Cola", "A&W", "7 Up", "Schweppes", "Sunkist", "Canada Dry", "Big Red", "Mott's", "Vernors", "Hawaiian Punch", "Nehi", "Squirt"]
     var body: some View {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
-            VStack(alignment: .center,  spacing: 1) {
-                Image("pepper")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 400, maxHeight: 400)
-                    .opacity(0.5)
-                Text("This app only works with DrPepper produced in the USA.")
-                    .font(.title3)
-                    .foregroundColor(.pepperRed)
-                    .bold()
-                    .multilineTextAlignment(.center)
-                    .opacity(0.7)
-                    .padding(.horizontal, 15)
-            }.padding()
             VStack {
-                Text("Select the type of DrPepper:")
-                    .font(.system(size: 19, weight: .bold))
-                    .foregroundColor(.pepperRed)
-                    .padding(.bottom, -5)
-                    .padding(.top, 10)
+                HStack {
+                    Text("Dr Pepper Snapple Group which includes:")
+                        //.font(.system(size: 18, weight: .bold))
+                        .foregroundColor(.pepperRed)
+                        .bold()
+                        .padding(.bottom, -5)
+                        .layoutPriority(1)
+                        .minimumScaleFactor(0.5)
+                    Picker("", selection: .constant("")) {
+                        ForEach(drPepperGroupItems, id: \.self) { option in
+                            Text(option)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    .frame(width: 10)
+                    .foregroundColor(Color.clear)
+                    .overlay(
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 18))
+                            .bold()
+                            .foregroundColor(.pepperRed)
+                            .background(.black)
+                            .padding(.bottom, -5)
+                        
+                    )
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
                 HStack {
                     ForEach(0..<options.count, id: \.self) { index in
                         Button {
@@ -54,7 +63,6 @@ struct ContentView: View {
                                 .font(.system(size: 18, weight: .bold))
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                            // .background(self.selectedOption == index ? Color.pepperRed : Color.black).opacity(0.9)
                                 .background(
                                     Group {
                                         if index == 0 {
@@ -79,8 +87,14 @@ struct ContentView: View {
                         }
                     }
                 }
-                .padding(.top, 20)
+                .padding(.top, 10)
                 .padding(.horizontal, 15)
+                .padding(.bottom, 5)
+                Text("This calculator only works with beverages produced in the USA.")
+                    .foregroundStyle(.gray)
+                    .font(.footnote)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
                 
                 TextField("Enter first 5 digits of code here, ex: A1234", text: $inputText)
                     .padding()
@@ -88,7 +102,7 @@ struct ContentView: View {
                     .foregroundStyle(.white)
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
-                    .padding(.top, 20)
+                    .padding(.top, 5)
                     .onChange(of: inputText) { oldvalue, newValue in
                         let uppercasedValue = newValue.uppercased()
                         let filteredValue = uppercasedValue.filter { $0.isLetter || $0.isNumber }
@@ -118,14 +132,11 @@ struct ContentView: View {
                         if vm.isvalidMonthAndDay(code: monthCode, dayOfYearString: dayOfTheYearString) {
                             expirationDate = vm.calculateExpirationDate(code: inputText, selectedOption: selectedOption)
                             isSheetPresented = true
-                            inputText = ""
                         } else {
                             showAlert = true
                             alertMessage = "The code you entered is incorrect. Make sure you put in the correct code."
-                            inputText = ""
                         }
                     }
-                    selectedOption = -1
                 } label: {
                     Text(inputText.isEmpty || errorMessage != nil || inputText.count < 5 ? "Enter details" : "Calculate Expiration")
                         .font(.system(size: 18, weight: .bold))
@@ -143,12 +154,17 @@ struct ContentView: View {
                 Spacer()
             }
             .sheet(isPresented: $isSheetPresented) {
-                BottomSheetView(expirationDate: expirationDate)
+                BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption)
                     .presentationDetents([.height(450)])
                     .presentationDragIndicator(.visible)
                     .presentationBackground(Color.pepperRed)
                     .cornerRadius(80)
-                
+            }
+            .onChange(of: isSheetPresented) { oldvalue, isPresented in
+                if !isPresented {
+                    inputText = ""
+                    selectedOption = -1
+                }
             }
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
