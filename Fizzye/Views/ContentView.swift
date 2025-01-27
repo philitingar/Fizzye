@@ -8,6 +8,9 @@
 import SwiftUI
 extension Color {
     static let pepperRed = Color(red: 137 / 255, green: 0 / 255, blue: 36 / 255)
+    static let darkerPepperRed = Color(red: 0.2, green: 0.0, blue: 0.01)
+    static let veryDarkGrey = Color(red: 0.1, green: 0.1, blue: 0.1)
+    static let lighterGrey = Color(red: 0.3, green: 0.3, blue: 0.3)
 }
 struct ContentView: View {
     @StateObject private var vm = ContentViewModel()
@@ -23,18 +26,22 @@ struct ContentView: View {
     let drPepperGroupItems = ["Dr Pepper", "Snapple", "RC Cola", "A&W", "7 Up", "Schweppes", "Sunkist", "Canada Dry", "Big Red", "Mott's", "Vernors", "Hawaiian Punch", "Nehi", "Squirt"]
     var body: some View {
         ZStack {
-            Color.black
+            Color.veryDarkGrey
                 .edgesIgnoringSafeArea(.all)
+            Image("Can_black")
+                .resizable()
+                .scaledToFit()
+                .opacity(0.4)
             VStack {
                 HStack {
-                    Text("Dr Pepper Snapple Group which includes:")
-                        //.font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.pepperRed)
+                    Text("Dr Pepper Snapple Group which can include:")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.white)
                         .bold()
-                        .padding(.bottom, -5)
+                        .padding(.bottom, -3)
                         .layoutPriority(1)
                         .minimumScaleFactor(0.5)
-                    Picker("", selection: .constant("")) {
+                    Picker("Dr Pepper Snapple Group which can include:", selection: .constant("")) {
                         ForEach(drPepperGroupItems, id: \.self) { option in
                             Text(option)
                         }
@@ -44,11 +51,11 @@ struct ContentView: View {
                     .foregroundColor(Color.clear)
                     .overlay(
                         Image(systemName: "chevron.right")
-                            .font(.system(size: 18))
+                            .font(.system(size: 16))
                             .bold()
-                            .foregroundColor(.pepperRed)
-                            .background(.black)
-                            .padding(.bottom, -5)
+                            .foregroundColor(.white)
+                            .background(Color.veryDarkGrey)
+                            .padding(.bottom, -3)
                         
                     )
                 }
@@ -66,11 +73,11 @@ struct ContentView: View {
                                 .background(
                                     Group {
                                         if index == 0 {
-                                            self.selectedOption == index ? Color.pepperRed : Color.gray.opacity(0.2)
+                                            self.selectedOption == index ? Color.pepperRed : Color.lighterGrey
                                         } else if index == 1 {
-                                            self.selectedOption == index ? Color.black : Color.gray.opacity(0.2)
+                                            self.selectedOption == index ? Color.black : Color.lighterGrey
                                         } else if index == 2 {
-                                            self.selectedOption == index ? Color.gray : Color.gray.opacity(0.2)
+                                            self.selectedOption == index ? Color.gray : Color.lighterGrey
                                         }
                                     }
                                 )
@@ -142,7 +149,7 @@ struct ContentView: View {
                         .font(.system(size: 18, weight: .bold))
                         .padding()
                         .foregroundColor(.white)
-                        .background(.black)
+                        .background(Color.darkerPepperRed)
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
@@ -152,6 +159,21 @@ struct ContentView: View {
                 }
                 .disabled(inputText.isEmpty || errorMessage != nil || inputText.count < 5)
                 Spacer()
+                Text("If you need help, or have a suggestion for a beverage that isn't listed, please fill out our form:")
+                    .foregroundStyle(.gray)
+                    .font(.footnote)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
+                    .padding(10)
+                Link("Tap here to access the form.", destination: URL(string: "https://forms.gle/TvfzouMA6eGHiJ9V9")!)
+                    .foregroundStyle(.gray)
+                    .font(.footnote)
+                    .multilineTextAlignment(.center)
+                    .padding(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
             }
             .sheet(isPresented: $isSheetPresented) {
                 BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption)
