@@ -19,7 +19,7 @@ class ContentViewModel: ObservableObject {
     let diet: Int = 2
     
     enum ExpirationType {
-        case sugraryPet, sugaryGlass, diet, zero
+        case sugaryPet, sugaryGlass, diet, zero
     }
     
     func isvalidMonthAndDay(code: String, dayOfYearString: String) -> Bool {
@@ -80,7 +80,7 @@ class ContentViewModel: ObservableObject {
         }
         let currentDate = Date()
         if expirationDateObj < currentDate {
-            return "This is expired. Expired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of Dr Pepper and for more then 6 months past expiration it will probably taste like a very salty and fizzy soda, with no taste of DrPepper."
+            return "This is expired. \nExpired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \n1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of Dr Pepper and for more then 6 months past expiration it will probably taste like a very salty and fizzy soda, with no taste of DrPepper."
         } else {
             return "This drink is good to consume."
         }
@@ -88,15 +88,11 @@ class ContentViewModel: ObservableObject {
     func getExpirationDetailsForDifferentContainers(code: String, selectedOption: Int, expirationDate: String) -> [String: String] {
         let manufactureDate = convertCodeToDate(code: code)
         
+        let glassBottleExpirationDate = addExpirationToDate(date: manufactureDate, type: ExpirationType.sugaryGlass)!
+        let petBottleExpirationDate = addExpirationToDate(date: manufactureDate, type: ExpirationType.sugaryPet)!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let glassBottleExpiration = Calendar.current.date(byAdding: .month, value: 9, to: manufactureDate)
-        let petBottleExpiration = Calendar.current.date(byAdding: .month, value: 4, to: manufactureDate)
-        guard let glassBottleExpirationDate = glassBottleExpiration,
-              let petBottleExpirationDate = petBottleExpiration else {
-            return ["Error" : "Error calculating expiration dates."]
-        }
         
         let glassBottleString = dateFormatter.string(from: glassBottleExpirationDate)
         let petBottleString = dateFormatter.string(from: petBottleExpirationDate)
@@ -108,9 +104,9 @@ class ContentViewModel: ObservableObject {
             expirationDetails["Glass Bottle/Cans expire in"] = glassBottleString
             expirationDetails["PET Bottles expire in"] = petBottleString
         } else if selectedOption == zero { //zero
-            expirationDetails["Any containers have expired in"] = forAllContainers
+            expirationDetails["Expires in"] = forAllContainers
         } else { //diet
-            expirationDetails["Any containers have expired in"] = forAllContainers
+            expirationDetails["Expires in"] = forAllContainers
         }
         return expirationDetails
     }
@@ -137,7 +133,7 @@ class ContentViewModel: ObservableObject {
     func addExpirationToDate(date: Date, type: ExpirationType) -> Date? {
         var shelfLife: Int
         switch type {
-        case ExpirationType.sugraryPet, ExpirationType.zero:
+        case ExpirationType.sugaryPet, ExpirationType.zero:
             shelfLife = 4
         case ExpirationType.sugaryGlass:
             shelfLife = 9

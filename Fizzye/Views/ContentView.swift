@@ -20,17 +20,40 @@ struct ContentView: View {
     @State private var errorMessage: String?
     let options = ["Sugary", "Zero", "Diet"]
     private let validationRule = IncrementalValidationRule()
-    
+    let drPepperGroupItems = ["Dr Pepper", "Snapple", "RC Cola", "A&W", "7 Up", "Schweppes", "Sunkist", "Canada Dry", "Big Red", "Mott's", "Vernors", "Hawaiian Punch", "Nehi", "Squirt"]
     var body: some View {
         ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                Text("Select the type of DrPepper:")
-                    .font(.system(size: 19, weight: .bold))
-                    .foregroundColor(.pepperRed)
-                    .padding(.bottom, -5)
-                    .padding(.top, 10)
+                HStack {
+                    Text("Dr Pepper Snapple Group which includes:")
+                        //.font(.system(size: 18, weight: .bold))
+                        .foregroundColor(.pepperRed)
+                        .bold()
+                        .padding(.bottom, -5)
+                        .layoutPriority(1)
+                        .minimumScaleFactor(0.5)
+                    Picker("", selection: .constant("")) {
+                        ForEach(drPepperGroupItems, id: \.self) { option in
+                            Text(option)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    .frame(width: 10)
+                    .foregroundColor(Color.clear)
+                    .overlay(
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 18))
+                            .bold()
+                            .foregroundColor(.pepperRed)
+                            .background(.black)
+                            .padding(.bottom, -5)
+                        
+                    )
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
                 HStack {
                     ForEach(0..<options.count, id: \.self) { index in
                         Button {
@@ -64,10 +87,10 @@ struct ContentView: View {
                         }
                     }
                 }
-                .padding(.top, 20)
+                .padding(.top, 10)
                 .padding(.horizontal, 15)
                 .padding(.bottom, 5)
-                Text("This calculator only works with DrPepper produced in the USA.")
+                Text("This calculator only works with beverages produced in the USA.")
                     .foregroundStyle(.gray)
                     .font(.footnote)
                     .multilineTextAlignment(.center)
@@ -129,8 +152,6 @@ struct ContentView: View {
                 }
                 .disabled(inputText.isEmpty || errorMessage != nil || inputText.count < 5)
                 Spacer()
-                Text("hello")
-                    .foregroundStyle(.white)
             }
             .sheet(isPresented: $isSheetPresented) {
                 BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption)

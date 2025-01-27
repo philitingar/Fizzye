@@ -14,23 +14,25 @@ struct BottomSheetView: View {
     let selectedOption: Int
 
     var body: some View {
-        VStack {
-            Text("Code: \(code)")
-                .padding()
-                .foregroundStyle(.white)
-            let expirationDetails = vm.getExpirationDetailsForDifferentContainers(code: code, selectedOption: selectedOption, expirationDate: expirationDate)
-            ForEach(expirationDetails.keys.sorted(), id: \.self) { key in
-                Text("\(key): \(expirationDetails[key]!)")
+        ScrollView {
+            VStack {
+                Text("Code: \(code)")
                     .padding()
                     .foregroundStyle(.white)
-            }
-            Text(vm.checkExpirationStatus(expirationDate: expirationDate))
-                .padding()
-                .foregroundStyle(.white)
+                let expirationDetails = vm.getExpirationDetailsForDifferentContainers(code: code, selectedOption: selectedOption, expirationDate: expirationDate)
+                ForEach(expirationDetails.keys.sorted(), id: \.self) { key in
+                    Text("\(key): \(expirationDetails[key]!)")
+                        .bold()
+                        .foregroundStyle(.white)
+                }
+                Text(vm.checkExpirationStatus(expirationDate: expirationDate))
+                    .padding()
+                    .foregroundStyle(.white)
                 
-            Spacer()
+                Spacer()
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
