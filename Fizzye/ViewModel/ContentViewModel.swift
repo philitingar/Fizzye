@@ -80,9 +80,9 @@ class ContentViewModel: ObservableObject {
         }
         let currentDate = Date()
         if expirationDateObj < currentDate {
-            return "This is expired. \nExpired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \n1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of Dr Pepper and for more then 6 months past expiration it will probably taste like a very salty and fizzy soda, with no taste of DrPepper."
+            return String(localized: "This is expired. \nExpired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \nBy our tests 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of Dr Pepper and for more then 6 months past expiration it will probably taste like a very salty and fizzy soda, with no taste of DrPepper.")
         } else {
-            return "This drink is good to consume."
+            return String(localized: "This drink is good to consume.")
         }
     }
     func getExpirationDetailsForDifferentContainers(code: String, selectedOption: Int, expirationDate: String) -> [String: String] {
@@ -101,12 +101,12 @@ class ContentViewModel: ObservableObject {
         var expirationDetails = [String: String]()
         
         if selectedOption == suggary { //sugar
-            expirationDetails["Glass Bottle/Cans expire in"] = glassBottleString
-            expirationDetails["PET Bottles expire in"] = petBottleString
+            expirationDetails[String(localized: "Glass Bottle/Cans expire in")] = glassBottleString
+            expirationDetails[String(localized: "PET Bottles expire in")] = petBottleString
         } else if selectedOption == zero { //zero
-            expirationDetails["Expires in"] = forAllContainers
+            expirationDetails[String(localized: "Expires in")] = forAllContainers
         } else { //diet
-            expirationDetails["Expires in"] = forAllContainers
+            expirationDetails[String(localized: "Expires in")] = forAllContainers
         }
         return expirationDetails
     }

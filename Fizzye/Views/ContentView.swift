@@ -21,7 +21,7 @@ struct ContentView: View {
     @State private var showAlert = false
     @State private var alertMessage: String = ""
     @State private var errorMessage: String?
-    let options = ["Sugary", "Zero", "Diet"]
+    let options = [String(localized:"Sugary"), String(localized:"Zero"), String(localized:"Diet")]
     private let validationRule = IncrementalValidationRule()
     let drPepperGroupItems = ["Unselectable List:","Dr Pepper", "Snapple", "RC Cola", "A&W", "7 Up", "Schweppes", "Sunkist", "Canada Dry", "Big Red", "Mott's", "Vernors", "Hawaiian Punch", "Nehi", "Squirt"]
     var body: some View {
@@ -103,6 +103,7 @@ struct ContentView: View {
                         .font(.footnote)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
+                        .padding(1)
                     
                     TextField("Enter first 5 digits of code here, ex: A1234", text: $inputText)
                         .padding()
@@ -132,7 +133,7 @@ struct ContentView: View {
                     Button {
                         if selectedOption == -1 {
                             showAlert = true
-                            alertMessage = "Please select the type of drink before calculating."
+                            alertMessage = String(localized: "Please select the type of drink before calculating.")
                             inputText = inputText
                         } else {
                             let monthCode = String(inputText.prefix(1))
@@ -142,7 +143,7 @@ struct ContentView: View {
                                 isSheetPresented = true
                             } else {
                                 showAlert = true
-                                alertMessage = "The code you entered is incorrect. Make sure you put in the correct code."
+                                alertMessage = String(localized:"The code you entered is incorrect. Make sure you put in the correct code.")
                             }
                         }
                     } label: {
@@ -200,6 +201,11 @@ struct ContentView: View {
 }
 
 
-#Preview {
+#Preview("English") {
     ContentView()
+        .environment(\.locale, Locale(identifier: "EN"))
+}
+#Preview("Spanish") {
+    ContentView()
+        .environment(\.locale, Locale(identifier: "ES"))
 }
