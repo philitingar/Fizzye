@@ -381,6 +381,9 @@
         }
       }
     },
+    "Expired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \nBy our tests 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of flavour and for more than 6 months past expiration it will probably taste like a very salty and fizzy soda, with no other flavours at all." : {
+
+    },
     "Expires in" : {
       "localizations" : {
         "de" : {
@@ -1071,7 +1074,54 @@
         }
       }
     },
+    "This is expired." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Getränk ist abgelaufen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto está caducado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceci est expiré."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez lejárt."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questa è scaduta."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To jest przeterminowane."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aceasta băutura este expirată."
+          }
+        }
+      }
+    },
     "This is expired. \nExpired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \nBy our tests 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of Dr Pepper and for more then 6 months past expiration it will probably taste like a very salty and fizzy soda, with no taste of DrPepper." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1082,7 +1132,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esto está caducado.\nLas bebidas caducadas generalmente no causan riesgos para la salud si se consumen. Dependiendo de cuánto tiempo haya pasado desde la fecha de caducidad, la bebida puede saber salada.\nSegún nuestras pruebas, 1-3 meses después de la caducidad puede tener un sabor más burbujeante y con toques de sal. Entre 3-6 meses después de la caducidad puede saber como una bebida gaseosa salada con un toque de Dr Pepper, y después de más de 6 meses de caducidad probablemente sabrá como una soda muy salada y burbujeante, sin sabor a Dr Pepper."
+            "value" : "\nLas bebidas caducadas generalmente no causan riesgos para la salud si se consumen. Dependiendo de cuánto tiempo haya pasado desde la fecha de caducidad, la bebida puede saber salada.\nSegún nuestras pruebas, 1-3 meses después de la caducidad puede tener un sabor más burbujeante y con toques de sal. Entre 3-6 meses después de la caducidad puede saber como una bebida gaseosa salada con un toque de Dr Pepper, y después de más de 6 meses de caducidad probablemente sabrá como una soda muy salada y burbujeante, sin sabor a Dr Pepper."
           }
         },
         "fr" : {
@@ -1112,7 +1162,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aceasta este expirată.\nBăuturile expirate de obicei nu prezintă riscuri pentru sănătate dacă sunt consumate. În funcție de cât timp a trecut de la data expirării, băutura poate avea un gust sărat.\nConform testelor noastre, băuturile expirate cu 1-3 luni pot avea un gust mai efervescent și cu un strop de sărat, cele expirate cu 3-6 luni pot avea gust de băutură carbogazoasă sărată cu un iz de Dr Pepper, iar cele expirate de mai mult de 6 luni vor avea probabil gust de băutură carbogazoasă foarte sărată, fără gust de Dr Pepper."
+            "value" : "\nBăuturile expirate de obicei nu prezintă riscuri pentru sănătate dacă sunt consumate. În funcție de cât timp a trecut de la data expirării, băutura poate avea un gust sărat.\nConform testelor noastre, băuturile expirate cu 1-3 luni pot avea un gust mai efervescent și cu un strop de sărat, cele expirate cu 3-6 luni pot avea gust de băutură carbogazoasă sărată cu un iz de Dr Pepper, iar cele expirate de mai mult de 6 luni vor avea probabil gust de băutură carbogazoasă foarte sărată, fără gust de Dr Pepper."
           }
         }
       }

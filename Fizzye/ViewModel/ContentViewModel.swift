@@ -80,7 +80,7 @@ class ContentViewModel: ObservableObject {
         }
         let currentDate = Date()
         if expirationDateObj < currentDate {
-            return String(localized: "This is expired. \nExpired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \nBy our tests 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of Dr Pepper and for more then 6 months past expiration it will probably taste like a very salty and fizzy soda, with no taste of DrPepper.")
+            return String(localized: "This is expired.")
         } else {
             return String(localized: "This drink is good to consume.")
         }

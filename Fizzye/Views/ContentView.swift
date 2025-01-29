@@ -21,6 +21,7 @@ struct ContentView: View {
     @State private var showAlert = false
     @State private var alertMessage: String = ""
     @State private var errorMessage: String?
+    
     let options = [String(localized:"Sugary"), String(localized:"Zero"), String(localized:"Diet")]
     private let validationRule = IncrementalValidationRule()
     let drPepperGroupItems = ["Unselectable List:","Dr Pepper", "Snapple", "RC Cola", "A&W", "7 Up", "Schweppes", "Sunkist", "Canada Dry", "Big Red", "Mott's", "Vernors", "Hawaiian Punch", "Nehi", "Squirt"]
@@ -113,15 +114,9 @@ struct ContentView: View {
                         .padding(.horizontal, 15)
                         .padding(.top, 5)
                         .onChange(of: inputText) { oldvalue, newValue in
-                            let uppercasedValue = newValue.uppercased()
-                            let filteredValue = uppercasedValue.filter { $0.isLetter || $0.isNumber }
+                            let filteredValue = newValue.uppercased().filter { $0.isLetter || $0.isNumber }
                             inputText = String(filteredValue.prefix(5))
-                            
-                            if !inputText.isEmpty {
-                                errorMessage = validationRule.validate(filteredValue)
-                            } else {
-                                errorMessage = nil
-                            }
+                            errorMessage = inputText.isEmpty ? nil : validationRule.validate(filteredValue)
                             
                         }
                     if let errorMessage = errorMessage {
@@ -163,10 +158,10 @@ struct ContentView: View {
                 }
                 .sheet(isPresented: $isSheetPresented) {
                     BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption)
-                        .presentationDetents([.height(450)])
+                        .presentationDetents([.height(250)])
                         .presentationDragIndicator(.visible)
                         .presentationBackground(Color.pepperRed)
-                        .cornerRadius(80)
+                        //.cornerRadius(80)
                 }
                 .onChange(of: isSheetPresented) { oldvalue, isPresented in
                     if !isPresented {
