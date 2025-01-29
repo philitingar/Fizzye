@@ -382,7 +382,50 @@
       }
     },
     "Expired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \nBy our tests 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of flavour and for more than 6 months past expiration it will probably taste like a very salty and fizzy soda, with no other flavours at all." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abgelaufene Getränke verursachen beim Verzehr normalerweise keine Gesundheitsrisiken. Je nachdem, wie viel Zeit seit dem Mindesthaltbarkeitsdatum vergangen ist, kann das Getränk salzig schmecken.\nNach unseren Tests kann es 1-3 Monate nach dem Mindesthaltbarkeitsdatum etwas kohlensäurehaltiger und mit einem Hauch von Salz schmecken, 3-6 Monate nach dem Mindesthaltbarkeitsdatum kann es wie ein salziges Erfrischungsgetränk mit einem Hauch von Geschmack schmecken und mehr als 6 Monate nach dem Mindesthaltbarkeitsdatum schmeckt es wahrscheinlich wie eine sehr salzige und kohlensäurehaltige Erfrischungslimonade ohne jeglichen anderen Geschmack."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las bebidas caducadas no suelen causar ningún riesgo para la salud si se consumen. Según el tiempo transcurrido desde la fecha de caducidad, la bebida puede tener un sabor salado.\nSegún nuestras pruebas, entre 1 y 3 meses después de la fecha de caducidad, puede tener un sabor un poco más gaseoso y con toques de salinidad; entre 3 y 6 meses después de la fecha de caducidad, puede tener un sabor a refresco salado con un toque de sabor y, más de 6 meses después de la fecha de caducidad, probablemente tendrá un sabor a refresco muy salado y gaseoso, sin ningún otro sabor."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les boissons périmées ne présentent généralement aucun risque pour la santé si elles sont consommées. En fonction du temps écoulé depuis la date d'expiration, la boisson peut avoir un goût salé.\nD'après nos tests, une boisson périmée de 1 à 3 mois peut avoir un goût un peu plus pétillant et avec des notes salées, une boisson périmée de 3 à 6 mois peut avoir le goût d'une boisson gazeuse salée avec une pointe de saveur et, au-delà de 6 mois après la date d'expiration, elle aura probablement le goût d'un soda très salé et pétillant, sans aucune autre saveur."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A lejárt italok fogyasztása általában nem jelent egészségügyi kockázatot. Attól függően, hogy mennyi idő telt el a lejárati idő óta, az ital sós ízű lehet.\nVizsgálataink szerint 1-3 hónappal a szavatossági lejárat után egy kicsit szénsavasabb és némi sós ízű lehet, 3-6 hónap lejárta után pedig olyan ízű lehet, mint egy enyhe ízű sós üdítőital, és több mint 6 hónappal a lejárat után valószínűleg íze olyan, mint egy nagyon sós és szénsavas szóda, más ízek nélkül."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le bevande scadute di solito non causano alcun rischio per la salute se consumate. A seconda di quanto tempo è trascorso dalla data di scadenza, la bevanda può avere un sapore salato. Secondo i nostri test, 1-3 mesi dopo la scadenza può avere un sapore un po' più frizzante e con accenni di salato, 3-6 mesi dopo la scadenza può avere il sapore di una bevanda gassata salata con un pizzico di sapore e per più di 6 mesi dopo la scadenza probabilmente avrà il sapore di una bevanda gassata molto salata e frizzante, senza altri sapori."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przeterminowane napoje zazwyczaj nie powodują żadnych zagrożeń dla zdrowia, jeśli są spożywane. W zależności od tego, ile czasu minęło od daty ważności, napój może mieć słony smak.\nWedług naszych testów napój po upływie terminu ważności od 1 do 3 miesięcy może mieć nieco bardziej musujący smak i nutę słoności, napój po upływie terminu ważności od 3 do 6 miesięcy może smakować jak słony napój gazowany z nutą smaku, a po upływie terminu ważności powyżej 6 miesięcy prawdopodobnie będzie smakował jak bardzo słony i musujący napój gazowany, bez żadnych innych smaków."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Băuturile expirate, de obicei, nu provoacă niciun risc pentru sănătate dacă sunt consumate. În funcție de cât timp a trecut de la data expirării băutura poate avea gust sărat.\nDupă testele noastre, după 1-3 luni după expirare, poate avea un gust puțin mai gazos și cu note de salinitate, cu 3-6 luni după expirare poate avea gust ca o băutură sifonică sărată cu o notă de aromă și, pentru mai mult de 6 luni după expirare, probabil va avea gust are gust de sifon foarte sărat și gazos, fără alte arome."
+          }
+        }
+      }
     },
     "Expires in" : {
       "localizations" : {
@@ -1116,53 +1159,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aceasta băutura este expirată."
-          }
-        }
-      }
-    },
-    "This is expired. \nExpired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \nBy our tests 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of Dr Pepper and for more then 6 months past expiration it will probably taste like a very salty and fizzy soda, with no taste of DrPepper." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dieses Getränk ist abgelaufen.\nAbgelaufene Getränke stellen in der Regel keine Gesundheitsrisiken dar, wenn sie konsumiert werden. Je nachdem, wie viel Zeit seit dem Ablaufdatum vergangen ist, kann das Getränk einen salzigen Geschmack haben.\nNach unseren Tests schmecken Getränke, die 1-3 Monate über dem Ablaufdatum liegen, etwas sprudelnder mit einem Hauch von Salz. Getränke, die 3-6 Monate abgelaufen sind, können wie ein salziger Limonadegeschmack mit einem Hauch von Dr Pepper schmecken, und bei Getränken, die mehr als 6 Monate abgelaufen sind, wird der Geschmack wahrscheinlich sehr salzig und sprudelnd sein, ohne den Geschmack von Dr Pepper."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "\nLas bebidas caducadas generalmente no causan riesgos para la salud si se consumen. Dependiendo de cuánto tiempo haya pasado desde la fecha de caducidad, la bebida puede saber salada.\nSegún nuestras pruebas, 1-3 meses después de la caducidad puede tener un sabor más burbujeante y con toques de sal. Entre 3-6 meses después de la caducidad puede saber como una bebida gaseosa salada con un toque de Dr Pepper, y después de más de 6 meses de caducidad probablemente sabrá como una soda muy salada y burbujeante, sin sabor a Dr Pepper."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ceci est expiré.\nLes boissons expirées ne présentent généralement aucun risque pour la santé si elles sont consommées. En fonction du temps écoulé depuis la date d'expiration, la boisson peut avoir un goût salé.\nSelon nos tests, 1 à 3 mois après l'expiration, la boisson peut avoir un goût légèrement plus pétillant avec des notes de salinité. De 3 à 6 mois après l'expiration, elle peut avoir un goût de soda salé avec une touche de Dr Pepper, et pour plus de 6 mois après l'expiration, elle aura probablement un goût de soda très salé et pétillant, sans goût de Dr Pepper."
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ez lejárt.\nA lejárt italok fogyasztása általában nem jelent egészségügyi kockázatot. Attól függően, hogy mennyi idő telt el a lejárati dátum óta, az ital sós ízű lehet.\nA tesztjeink alapján 1-3 hónappal a lejárat után az ital enyhén buborékosabb és sós ízű lehet, 3-6 hónappal a lejárat után pedig egy sós üdítő ital íze keveredhet Dr Pepper ízzel. 6 hónapnál régebbi lejáratú italok valószínűleg nagyon sós és buborékos üdítőként ízlenek, Dr Pepper íz nélkül."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Questa è scaduta.\nLe bevande scadute di solito non causano alcun rischio per la salute se consumate. A seconda di quanto tempo è trascorso dalla data di scadenza, la bevanda può avere un sapore salato.\nDai nostri test, 1-3 mesi dopo la scadenza può avere un sapore un po' più frizzante e con sentori di salato, 3-6 mesi dopo la scadenza può avere il sapore di una bevanda gassata salata con un pizzico di Dr Pepper e per più di 6 mesi dopo la scadenza probabilmente avrà il sapore di una bevanda gassata molto salata e frizzante, senza alcun sapore di Dr Pepper."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "To jest przeterminowane.\nPrzeterminowane napoje zazwyczaj nie powodują żadnych zagrożeń dla zdrowia, jeśli są spożywane. W zależności od tego, ile czasu minęło od daty ważności, napój może mieć słony smak.\nWedług naszych testów napój po upływie terminu ważności od 1 do 3 miesięcy może mieć nieco bardziej musujący smak i nutę słoności, napój po upływie terminu ważności od 3 do 6 miesięcy może smakować jak słony napój gazowany z nutą Dr Pepper, a po upływie terminu ważności powyżej 6 miesięcy prawdopodobnie będzie smakował jak bardzo słony i musujący napój gazowany, bez posmaku Dr Pepper."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "\nBăuturile expirate de obicei nu prezintă riscuri pentru sănătate dacă sunt consumate. În funcție de cât timp a trecut de la data expirării, băutura poate avea un gust sărat.\nConform testelor noastre, băuturile expirate cu 1-3 luni pot avea un gust mai efervescent și cu un strop de sărat, cele expirate cu 3-6 luni pot avea gust de băutură carbogazoasă sărată cu un iz de Dr Pepper, iar cele expirate de mai mult de 6 luni vor avea probabil gust de băutură carbogazoasă foarte sărată, fără gust de Dr Pepper."
           }
         }
       }

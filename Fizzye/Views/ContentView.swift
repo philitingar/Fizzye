@@ -161,7 +161,6 @@ struct ContentView: View {
                         .presentationDetents([.height(250)])
                         .presentationDragIndicator(.visible)
                         .presentationBackground(Color.pepperRed)
-                        //.cornerRadius(80)
                 }
                 .onChange(of: isSheetPresented) { oldvalue, isPresented in
                     if !isPresented {
