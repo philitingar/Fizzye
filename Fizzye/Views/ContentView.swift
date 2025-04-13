@@ -22,6 +22,9 @@ struct ContentView: View {
     @State private var alertMessage: String = ""
     @State private var errorMessage: String?
     
+    @State private var isExpired: Bool = false
+    @State private var expirationStatusMessage: String = "" // To pass to BottomSheet
+    
     let options = [String(localized:"Sugary"), String(localized:"Zero"), String(localized:"Diet")]
     private let validationRule = IncrementalValidationRule()
     let drPepperGroupItems = ["Unselectable List:","Dr Pepper", "Snapple", "RC Cola", "A&W", "7 Up", "Schweppes", "Sunkist", "Canada Dry", "Big Red", "Mott's", "Vernors", "Hawaiian Punch", "Nehi", "Squirt"]
@@ -135,6 +138,8 @@ struct ContentView: View {
                             let dayOfTheYearString = String(inputText.suffix(3))
                             if vm.isvalidMonthAndDay(code: monthCode, dayOfYearString: dayOfTheYearString) {
                                 expirationDate = vm.calculateExpirationDate(code: inputText, selectedOption: selectedOption)
+                                expirationStatusMessage = vm.checkExpirationStatus(expirationDate: expirationDate)
+                                isExpired = (expirationStatusMessage == String(localized: "This is expired."))
                                 isSheetPresented = true
                             } else {
                                 showAlert = true
@@ -157,8 +162,13 @@ struct ContentView: View {
                     .disabled(inputText.isEmpty || errorMessage != nil || inputText.count < 5)
                 }
                 .sheet(isPresented: $isSheetPresented) {
-                    BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption)
+                    BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption,  expirationStatus: expirationStatusMessage)
                         .presentationDetents([.height(250)])
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(Color.pepperRed)
+                        .presentationDetents(
+                            isExpired ? [.fraction(0.8), .large] : [.height(250)] // Taller if expired, original height if not
+                        )
                         .presentationDragIndicator(.visible)
                         .presentationBackground(Color.pepperRed)
                 }
@@ -166,6 +176,8 @@ struct ContentView: View {
                     if !isPresented {
                         inputText = ""
                         selectedOption = -1
+                        isExpired = false // Reset expired status
+                                                expirationStatusMessage = "" // Reset status message
                     }
                 }
                 .alert(isPresented: $showAlert) {

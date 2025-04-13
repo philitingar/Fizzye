@@ -12,47 +12,84 @@ struct BottomSheetView: View {
     let expirationDate: String
     let code: String
     let selectedOption: Int
-    @State private var showInfoText = false
-
+    let expirationStatus: String
+    
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(alignment: .leading) {
                 Text("Code: \(code)")
-                    .padding()
+                    .padding(.bottom)
                     .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                
                 let expirationDetails = vm.getExpirationDetailsForDifferentContainers(code: code, selectedOption: selectedOption, expirationDate: expirationDate)
                 ForEach(expirationDetails.keys.sorted(), id: \.self) { key in
                     Text("\(key): \(expirationDetails[key]!)")
                         .bold()
                         .foregroundStyle(.white)
+                        .padding(.bottom, 2)
+                        .frame(maxWidth: .infinity, alignment: .center)
                 }
+                
+                // --- Simplified Status Display ---
+                // The HStack is still useful for centering the text
                 HStack {
-                    Text(vm.checkExpirationStatus(expirationDate: expirationDate))
+                    Text(expirationStatus)
                         .underline(true, color: .white)
                         .foregroundStyle(.white)
                         .font(.system(size: 20, weight: .bold))
-                    if vm.checkExpirationStatus(expirationDate: expirationDate) == "This is expired." {
-                        Button {
-                            showInfoText.toggle()
-                        } label: {
-                            Image(systemName: "info.circle")
-                                .foregroundStyle(.white)
-                        }
-                        if showInfoText {
-                            Image(systemName: "arrow.down")
-                                .foregroundStyle(.white)
-                                .bold()
-                        }
-                    }
+                    // --- REMOVED Button and conditional arrow logic ---
                 }
                 .padding(.top)
                 .padding(.bottom)
-                if showInfoText {
-                    Text("Expired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \nBy our tests 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of flavour and for more than 6 months past expiration it will probably taste like a very salty and fizzy soda, with no other flavours at all.")
-                        .foregroundStyle(.white)
-                        .padding()
-                        .font(.system(size: 18))
+                .frame(maxWidth: .infinity, alignment: .center) // Center status line
+                if expirationStatus == String(localized: "This is expired.") {
+                    VStack(alignment: .leading, spacing: 15) {
+                        HStack(alignment: .top) {
+                            Image(systemName: "heart.slash.circle")
+                                .font(.title3)
+                                .foregroundColor(.white.opacity(0.8))
+                                .frame(width: 30)
+                            Text("Expired drinks usually don't cause any health risks if consumed.")
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        
+                        HStack(alignment: .top) {
+                            Image(systemName: "timer")
+                                .font(.title3)
+                                .foregroundColor(.white.opacity(0.8))
+                                .frame(width: 30)
+                            Text("**1-3 months past expiration:** Depending on how much time has passed, the drink can start to taste salty. It might also seem a bit more fizzy and have hints of saltiness.")
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        
+                        HStack(alignment: .top) {
+                            Image(systemName: "calendar")
+                                .font(.title3)
+                                .foregroundColor(.white.opacity(0.8))
+                                .frame(width: 30)
+                            Text("**3-6 months past expiration:** The taste may resemble a salty soda drink with only a hint of the original flavour.")
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        
+                        HStack(alignment: .top) {
+                            Image(systemName: "calendar.badge.exclamationmark")
+                                .font(.title3)
+                                .foregroundColor(.white.opacity(0.8))
+                                .frame(width: 30)
+                            Text("**More than 6 months past expiration:** It will likely taste like a very salty and fizzy soda, with no other flavours remaining.")
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                    .foregroundStyle(.white)
+                    .padding()
+                    .font(.system(size: 17))
+                    .background(Color.white.opacity(0.1))
+                    .cornerRadius(10)
+                    .padding(.top) // Add space above the info box
                 }
+                // --- End of Conditional Info Text Section ---
+                
                 Spacer()
             }
             .padding()
@@ -61,5 +98,21 @@ struct BottomSheetView: View {
 }
 
 #Preview {
-    BottomSheetView(expirationDate: "2024-12-31", code: "A5001", selectedOption: -1)
+    BottomSheetView(
+        expirationDate: "2023-01-15", // Example expired date
+        code: "A3001",
+        selectedOption: 0, // Sugary
+        expirationStatus: "This is expired." // Provide the status directly
+    )
+    .background(Color.pepperRed) // Add background for context
+}
+
+#Preview {
+    BottomSheetView(
+        expirationDate: "2025-12-31", // Example not expired date
+        code: "M4365",
+        selectedOption: 1, // Zero
+        expirationStatus: "This drink is good to consume." // Provide the status directly
+    )
+    .background(Color.pepperRed) // Add background for context
 }

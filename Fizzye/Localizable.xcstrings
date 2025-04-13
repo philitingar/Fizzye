@@ -1,6 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "**1-3 months past expiration:** Depending on how much time has passed, the drink can start to taste salty. It might also seem a bit more fizzy and have hints of saltiness." : {
+
+    },
+    "**3-6 months past expiration:** The taste may resemble a salty soda drink with only a hint of the original flavour." : {
+
+    },
+    "**More than 6 months past expiration:** It will likely taste like a very salty and fizzy soda, with no other flavours remaining." : {
+
+    },
     "%@: %@" : {
       "localizations" : {
         "de" : {
@@ -381,7 +390,11 @@
         }
       }
     },
+    "Expired drinks usually don't cause any health risks if consumed." : {
+
+    },
     "Expired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \nBy our tests 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of flavour and for more than 6 months past expiration it will probably taste like a very salty and fizzy soda, with no other flavours at all." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
