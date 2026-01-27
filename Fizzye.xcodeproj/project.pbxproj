@@ -43,16 +43,6 @@
 		263BBCBB2D0742D600C0A8B5 /* Fizzye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fizzye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		201CC48E2F296DCE00AED199 /* Exceptions for "Fizzye" folder in "FizzyeTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"GoogleService-Info.plist",
-			);
-			target = 20BFA7AA2D43AF0600B5BA1C /* FizzyeTests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		20BFA7AC2D43AF0600B5BA1C /* FizzyeTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -61,9 +51,6 @@
 		};
 		263BBCBD2D0742D600C0A8B5 /* Fizzye */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				201CC48E2F296DCE00AED199 /* Exceptions for "Fizzye" folder in "FizzyeTests" target */,
-			);
 			path = Fizzye;
 			sourceTree = "<group>";
 		};
