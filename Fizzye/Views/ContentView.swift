@@ -25,17 +25,37 @@ struct ContentView: View {
     @State private var isExpired: Bool = false
     @State private var expirationStatusMessage: String = "" // To pass to BottomSheet
     
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    
     let options = [String(localized:"Sugary"), String(localized:"Zero"), String(localized:"Diet")]
     private let validationRule = IncrementalValidationRule()
     let drPepperGroupItems = ["Unselectable List:","Dr Pepper", "Snapple", "RC Cola", "A&W", "7 Up", "Schweppes", "Sunkist", "Canada Dry", "Big Red", "Mott's", "Vernors", "Hawaiian Punch", "Nehi", "Squirt"]
+    
+    // Helper function to determine which background image to use based on actual dimensions
+    private func backgroundImageName(for size: CGSize) -> String {
+        // Check if the view is in landscape orientation by comparing width and height
+        let isLandscape = size.width > size.height
+        return isLandscape ? "can_drinks_landscape" : "cans_photo"
+    }
     var body: some View {
         ZStack {
+            // Background layer
             Color.veryDarkGrey
-                .edgesIgnoringSafeArea(.all)
-            Image("Can_black")
-                .resizable()
-                .scaledToFit()
-                .opacity(0.4)
+                .ignoresSafeArea()
+            
+            // Background image layer
+            GeometryReader { geometry in
+                Image(backgroundImageName(for: geometry.size))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .clipped()
+                    .opacity(0.4)
+            }
+            .ignoresSafeArea()
+            
+            // Content layer
             ScrollView() {
                 VStack {
                     HStack {
