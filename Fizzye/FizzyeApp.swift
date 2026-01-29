@@ -12,6 +12,8 @@ import FirebaseAnalytics
 @main
 struct FizzyeApp: App {
     init() {
+        // Set analytics collection preference BEFORE configuring Firebase
+        Analytics.setAnalyticsCollectionEnabled(true)
         FirebaseApp.configure()
     }
     
