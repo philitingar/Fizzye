@@ -176,15 +176,12 @@ struct ContentView: View {
                     .disabled(inputText.isEmpty || errorMessage != nil || inputText.count < 5)
                 }
                 .sheet(isPresented: $isSheetPresented) {
-                    BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption,  expirationStatus: expirationStatusMessage)
-                        .presentationDetents([.height(250)])
-                        .presentationDragIndicator(.visible)
-                        .presentationBackground(Color.pepperRed)
+                    BottomSheetView(expirationDate: expirationDate, code: inputText, selectedOption: selectedOption, expirationStatus: expirationStatusMessage)
+                        .scrollContentBackground(.hidden)
                         .presentationDetents(
-                            isExpired ? [.fraction(0.8), .large] : [.height(250)] // Taller if expired, original height if not
+                            isExpired ? [.fraction(0.8), .large] : [.height(250)]
                         )
                         .presentationDragIndicator(.visible)
-                        .presentationBackground(Color.pepperRed)
                 }
                 .onChange(of: isSheetPresented) { oldvalue, isPresented in
                     if !isPresented {
