@@ -2,13 +2,142 @@
   "sourceLanguage" : "en",
   "strings" : {
     "**1-3 months past expiration:** Depending on how much time has passed, the drink can start to taste salty. It might also seem a bit more fizzy and have hints of saltiness." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**1–3 Monate nach Ablauf des Mindesthaltbarkeitsdatums:** Je nach verstrichener Zeit kann das Getränk salzig schmecken. Es kann auch etwas kohlensäurehaltiger wirken und einen Hauch von Salz aufweisen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**De 1 a 3 meses después de la fecha de caducidad:** Dependiendo del tiempo transcurrido, la bebida puede empezar a tener un sabor salado. También podría tener un poco más de gas y toques salados."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**1 à 3 mois après la date limite de consommation :** Selon le temps écoulé, la boisson peut commencer à avoir un goût salé. Elle peut également paraître un peu plus pétillante et présenter des notes salées."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Lejárati idő:** Attól függően, hogy mennyi idő telt el, az ital sós ízűvé válhat. Emellett kissé szénsavasabbá válhat, és sós ízjegyeket is tartalmazhat."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Da 1 a 3 mesi dopo la scadenza:** A seconda di quanto tempo è trascorso, la bevanda potrebbe iniziare ad avere un sapore salato. Potrebbe anche sembrare un po' più frizzante e presentare sentori di salinità."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**1-3 miesiące po upływie terminu ważności:** W zależności od upływu czasu napój może nabrać słonego smaku. Może też wydawać się nieco bardziej musujący i mieć nutę słoności."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**1-3 luni după expirare:** În funcție de timpul trecut, băutura poate începe să aibă un gust sărat. De asemenea, ar putea părea puțin mai acidulată și ar putea avea note sărate."
+          }
+        }
+      }
     },
     "**3-6 months past expiration:** The taste may resemble a salty soda drink with only a hint of the original flavour." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**3-6 Monate nach Ablauf des Verfallsdatums:** Der Geschmack kann an ein salziges Erfrischungsgetränk erinnern, wobei nur noch ein Hauch des ursprünglichen Geschmacks wahrnehmbar ist."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**3 a 6 meses después del vencimiento:** El sabor puede parecerse a una bebida gaseosa salada con solo un toque del sabor original."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**3 à 6 mois après la date de péremption :** Le goût peut ressembler à celui d’une boisson gazeuse salée avec seulement une légère trace de la saveur originale."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Lejárati idő:** 3-6 hónappal: Az íze egy sós üdítőitalra hasonlíthat, csak enyhe vonásokkal az eredeti ízvilágból."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**3-6 mesi dopo la scadenza:** Il sapore potrebbe ricordare quello di una bibita gassata salata, con solo un accenno del sapore originale."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**3–6 miesięcy po upływie terminu ważności:** Smak może przypominać słony napój gazowany, z niewielką domieszką oryginalnego smaku."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**3-6 luni după expirare:** Gustul poate semăna cu o băutură carbogazoasă sărată, cu doar o urmă de aromă originală."
+          }
+        }
+      }
     },
     "**More than 6 months past expiration:** It will likely taste like a very salty and fizzy soda, with no other flavours remaining." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Mehr als 6 Monate nach Ablauf des Verfallsdatums:** Es schmeckt wahrscheinlich wie eine sehr salzige und kohlensäurehaltige Limonade, ohne dass andere Aromen mehr vorhanden sind."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Más de 6 meses después de la fecha de vencimiento:** Probablemente tendrá el sabor de un refresco muy salado y gaseoso, sin otros sabores restantes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Plus de 6 mois après la date de péremption :** Le produit aura probablement le goût d’un soda très salé et pétillant, sans aucune autre saveur."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Lejárati idő:** Valószínűleg nagyon sós és szénsavas üdítőital íze lesz, más ízek nélkül."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Scadenza superiore a 6 mesi:** Probabilmente avrà il sapore di una bibita gassata molto salata e frizzante, senza altri sapori."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Ponad 6 miesięcy po upływie terminu ważności:** Najprawdopodobniej będzie smakował jak bardzo słony i musujący napój gazowany, bez żadnych innych smaków."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**A expirat mai mult de 6 luni:** Probabil va avea gust de suc acidulat foarte sărat și acidulat, fără alte arome rămase."
+          }
+        }
+      }
     },
     "%@: %@" : {
       "localizations" : {
@@ -391,7 +520,50 @@
       }
     },
     "Expired drinks usually don't cause any health risks if consumed." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abgelaufene Getränke bergen beim Verzehr in der Regel keine Gesundheitsrisiken."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las bebidas caducadas generalmente no ocasionan ningún riesgo para la salud si se consumen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les boissons périmées ne présentent généralement aucun risque pour la santé si elles sont consommées."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A lejárt szavatosságú italok fogyasztása általában nem okoz egészségügyi kockázatot."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solitamente, le bevande scadute non comportano alcun rischio per la salute se consumate."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przeterminowane napoje zazwyczaj nie stanowią zagrożenia dla zdrowia, jeśli się je spożyje."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Băuturile expirate, de obicei, nu prezintă riscuri pentru sănătate dacă sunt consumate."
+          }
+        }
+      }
     },
     "Expired drinks usually don't cause any health risks if consumed. Depending on how much time has passed since the expiration date the drink can taste salty. \nBy our tests 1-3 months past expiration can taste a bit more fizzy and with hints of saltiness, 3-6 months past expiration can taste like a salty soda drink with a hint of flavour and for more than 6 months past expiration it will probably taste like a very salty and fizzy soda, with no other flavours at all." : {
       "extractionState" : "stale",
