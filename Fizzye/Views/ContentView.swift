@@ -95,27 +95,26 @@ struct ContentView: View {
                                     .font(.system(size: 18, weight: .bold))
                                     .frame(maxWidth: .infinity)
                                     .padding()
-                                    .background(
+                                    .foregroundColor(.white)
+                                    .background {
                                         Group {
                                             if index == 0 {
-                                                self.selectedOption == index ? Color.pepperRed : Color.lighterGrey
+                                                selectedOption == index ? Color.pepperRed.opacity(0.6) : Color.lighterGrey.opacity(0.6)
                                             } else if index == 1 {
-                                                self.selectedOption == index ? Color.black : Color.lighterGrey
+                                                selectedOption == index ? Color.black.opacity(0.6) : Color.lighterGrey.opacity(0.6)
                                             } else if index == 2 {
-                                                self.selectedOption == index ? Color.gray : Color.lighterGrey
+                                                selectedOption == index ? Color.gray.opacity(0.6) : Color.lighterGrey.opacity(0.6)
                                             }
                                         }
-                                    )
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                    .overlay(
-                                        Group {
-                                            if selectedOption == index {
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .stroke(Color.pepperRed, lineWidth: 2)
-                                            }
+                                        .clipShape(RoundedRectangle(cornerRadius: 30))
+                                    }
+                                    .glassEffect(.clear)
+                                    .overlay {
+                                        if selectedOption == index {
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .stroke(Color.pepperRed, lineWidth: 2)
                                         }
-                                    )
+                                    }
                             }
                         }
                     }
