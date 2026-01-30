@@ -131,7 +131,7 @@ struct ContentView: View {
                     
                     TextField("Enter first 5 digits of code here, ex: A1234", text: $inputText)
                         .padding()
-                        .background(Color.black)
+                        .background(Color.gray)
                         .foregroundStyle(.white)
                         .cornerRadius(10)
                         .padding(.horizontal, 15)
@@ -168,16 +168,11 @@ struct ContentView: View {
                         }
                     } label: {
                         Text(inputText.isEmpty || errorMessage != nil || inputText.count < 5 ? "Enter details" : "Calculate Expiration")
-                            .font(.system(size: 18, weight: .bold))
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color.darkerPepperRed)
-                            .cornerRadius(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.pepperRed, lineWidth: 2)
-                            )
-                            .padding(.top, 20)
+                                .font(.system(size: 18, weight: .bold))
+                                .padding()
+                                .foregroundColor(.white)
+                                .glassEffect(.clear)
+                                .padding(.top, 20)
                     }
                     .disabled(inputText.isEmpty || errorMessage != nil || inputText.count < 5)
                 }
